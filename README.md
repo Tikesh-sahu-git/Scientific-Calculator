@@ -2,7 +2,7 @@
 
 A stylish, responsive, and interactive scientific calculator built using **HTML**, **CSS**, and **JavaScript**. This web-based calculator supports standard arithmetic, advanced mathematical functions, constants like π and e, and keyboard input.
 
-![screenshot](https://your-screenshot-link-here) <!-- Replace with actual screenshot URL -->
+![screenshot](screenshot.png) <!-- Replace with actual screenshot URL -->
 
 ## 🚀 Features
 
@@ -25,6 +25,6 @@ A stylish, responsive, and interactive scientific calculator built using **HTML*
 No installation required. Just clone the repository and open `index.html` in your browser.
 
 ```bash
-git clone https://github.com/your-username/scientific-calculator.git
+git clone https://tikesh-sahu-git.github.io/Scientific-Calculator/
 cd scientific-calculator
 open index.html
