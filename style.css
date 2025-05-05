@@ -1,0 +1,220 @@
+:root {
+    --primary: #3498db;
+    --secondary: #2ecc71;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --dark: #2c3e50;
+    --light: #ecf0f1;
+    --purple: #9b59b6;
+    --teal: #1abc9c;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+    50% { transform: translateY(-20px) rotateX(5deg) rotateY(5deg); }
+}
+
+.display {
+    padding: 25px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: right;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.display::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.previous-operand {
+    min-height: 24px;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    word-wrap: break-word;
+    word-break: break-all;
+    opacity: 0.8;
+}
+
+.current-operand {
+    min-height: 50px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-top: 5px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+}
+
+button {
+    border: none;
+    outline: none;
+    padding: 20px 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+    margin: 5px;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:active {
+    transform: scale(0.95);
+    filter: brightness(0.9);
+}
+
+button.number {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+button.number:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+button.operation {
+    background-color: var(--primary);
+    font-weight: bold;
+}
+
+button.function {
+    background-color: var(--teal);
+}
+
+button.equals {
+    background-color: var(--secondary);
+    font-weight: bold;
+}
+
+button.clear,
+button.delete {
+    background-color: var(--danger);
+}
+
+button.const {
+    background-color: var(--warning);
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+/* Ripple effect */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+}
+
+.ripple:active:after {
+    transform: scale(0, 0);
+    opacity: 0.3;
+    transition: 0s;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    button {
+        padding: 18px 8px;
+        font-size: 1.1rem;
+    }
+
+    .display {
+        padding: 20px;
+    }
+
+    .current-operand {
+        font-size: 2rem;
+        min-height: 45px;
+    }
+}
+
+/* Button animation */
+@keyframes buttonPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.button-pop {
+    animation: buttonPop 0.3s ease;
+}
